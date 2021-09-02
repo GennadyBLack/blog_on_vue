@@ -29,8 +29,6 @@ router.get('/', async (req,res)=>{
         });
       });
     });
-
-
 })
 
 router.post('/',(req,res)=>{
@@ -59,22 +57,32 @@ router.post('/',(req,res)=>{
   var limit = parseInt(req.query.limit) || 10;
 
 
-     const idCategory = await Category.findOne({name:req.query.tag})
-     const query = {category:idCategory._id}
-
-     const postInCategory = await Post.find(query)
-     .sort({ date: -1 })
-     .skip(page * limit) //Notice here
-     .limit(limit).exec(err,doc=>{if(err){res.json(err)}})
-     const  count = await Post.find({category:idCategory._id})
-    //const page = Match.ceil(count / limit)
-      if(postInCtegory){res.json({
-          total: count,
-          page: page,
-          pageSize: postInCtegory.length,
-          articles: postInCategory
-          }).status(200)}
-                   })
+    // const idCategory = await Category.findOne({name:req.query.tag})
+     const query = {}// {category:idCategory._id}
+     Post.paginate(query, {limit:10}, function (err, result) {
+       if(error){
+         res.json(error).status(400)
+       } 
+       // result.docs
+      // result.totalDocs = 100
+      // result.limit = 10
+      // result.page = 1
+      // result.totalPages = 10
+      // result.hasNextPage = true
+      // result.nextPage = 2
+      // result.hasPrevPage = false
+      // result.prevPage = null
+      // result.pagingCounter = 1
+       
+       return res.json({
+        total: result.totalDocs,
+        page: result.page,
+        pageSize: docs.length,
+        articles: docs
+      }
+       )
+    });
+                    })
                   
 
 

@@ -6,6 +6,7 @@ import userProfile from '@/views/UserProfile'
 import createArticle from '@/views/CreateArticle'
 import YourFeed from '@/views/YourFeed'
 import TagFeed from '@/views/TagFeed'
+import Article from '@/views/Article'
 
 const routes = [
   {
@@ -26,7 +27,7 @@ const routes = [
   {
     path: '/feed',
     name: 'yourFeed',
-    component: GlobalFeed
+    component: GlobalFeed 
   },
   {
     path: '/tags/:slug',
@@ -36,7 +37,7 @@ const routes = [
   {
     path: '/articles/:slug',
     name: 'article',
-    component: GlobalFeed
+    component: Article
   },
   {
     path: '/articles/new',
