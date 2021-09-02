@@ -44,7 +44,7 @@
           <div>
             <p>{{ article.body }}</p>
           </div>
-          TAG LIST IS HERE
+               <mcv-tag-list v-if='article.tags' :tags='article.tags'/>
         </div>
       </div>
     </div>
@@ -53,6 +53,7 @@
 
 
 <script>
+import McvTagList from '@/components/TagList'
 import {mapState,mapGetters} from 'vuex'
 import {actionTypes as articleActionTypes} from '@/store/modules/article'
 import {getterTypes as aurhGetterTypes} from '@/store/modules/auth'
@@ -65,8 +66,10 @@ export default {
     },
     components:{
         McvLoading,
-        McvErrorMessage
-    } , computed: {
+        McvErrorMessage,
+        McvTagList
+    } ,
+     computed: {
     ...mapGetters({currentUser:aurhGetterTypes.currentUser}),
     ...mapState({
       isLoading: state => state.article.isLoading,

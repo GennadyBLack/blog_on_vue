@@ -8,8 +8,9 @@ const deleteArticle = id => {
     return delete(`articles/${id}`)
 }
 
-const createArticle = id => {
-    return post(`articles/`)
+const createArticle = articleInput => {
+    return post(`articles/`,articleInput)
+    .then(response=>response.data)
 }
 const updateArticle = id => {
     return post(`articles/update/${id}`)
