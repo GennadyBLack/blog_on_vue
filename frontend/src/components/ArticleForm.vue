@@ -82,10 +82,10 @@ export default {
     },
     data(){
       return{
-        title:'',
-        description:'',
-        category:[],
-        slug:''
+        title:this.initialValues.title,
+        description:this.initialValues.description,
+        category:this.initialValues.category,
+        slug:this.initialValues.slug
         }
     },
     methods:{

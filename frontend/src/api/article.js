@@ -12,8 +12,8 @@ const createArticle = articleInput => {
     return axios.post(`articles/`,{articleInput})
     .then(response=>response.data)
 }
-const updateArticle = id => {
-    return axios.post(`articles/update/${id}`)
+const updateArticle = (id,articleInput) => {
+    return axios.put(`articles/update/${id}`,articleInput).then(response=>response.data)
 }
 
 export default {

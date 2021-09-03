@@ -86,8 +86,8 @@ router.post('/',(req,res)=>{
  router.get('/tag', async (req,res)=>{
   var page = parseInt(req.query.page) -1 || 1; //for next page pass 1 here
   var limit = parseInt(req.query.limit) || 10;
-    // const idCategory = await Category.findOne({name:req.query.tag})
-     const query = {}// {category:idCategory._id}
+     const idCategory = await Category.findOne({name:req.query.tag})
+     const query = {category:idCategory._id}
      Post.paginate(query, {limit:10}, function (err, result) {
        if(error){
          res.json(error).status(400)
@@ -120,10 +120,6 @@ router.post('/',(req,res)=>{
       res.json('not found').status(400)
     }
   })
-
   
-                  
-
-
 module.exports = router
 
