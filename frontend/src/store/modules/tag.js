@@ -30,6 +30,7 @@ const mutations = {
   }
 }
 
+
 const actions = {
   [actionTypes.getTag](context) {
     return new Promise(resolve => {

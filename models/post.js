@@ -8,7 +8,7 @@ title:{
     required:true,
     min:8},
 author: {type:Schema.Types.ObjectId,ref:'Profile',required:true},
-desription:{type:String,
+description:{type:String,
             min:120,
         required:true},
 image:String,
@@ -19,7 +19,12 @@ date:{
 },
 genre: [{type: Schema.ObjectId, ref: 'Genre'}],
 comment: [{type: Schema.ObjectId, ref: 'Comment'}],
-category:[{type:Schema.Types.ObjectId,ref:'Category'}]
+category:[{type:Schema.Types.ObjectId,ref:'Category'}],
+slug:{
+    type:String,
+    required:true,
+    unique:true
+}
 }
 
 )

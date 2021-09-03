@@ -40,7 +40,7 @@
 <script>
 import {mapGetters} from 'vuex'
 import {actionTypes,getterTypes} from '@/store/modules/auth'
-import McvValidationErrors from '@/components/validationErrors'
+import McvValidationErrors from '@/components/ValidationErrors'
 
 export default {
     name:'McvLogin',

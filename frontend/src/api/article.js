@@ -5,15 +5,15 @@ const getArticle = ( id) => {
 }
 
 const deleteArticle = id => {
-    return delete(`articles/${id}`)
+    return axios.delete(`articles/${id}`)
 }
 
 const createArticle = articleInput => {
-    return post(`articles/`,articleInput)
+    return axios.post(`articles/`,{articleInput})
     .then(response=>response.data)
 }
 const updateArticle = id => {
-    return post(`articles/update/${id}`)
+    return axios.post(`articles/update/${id}`)
 }
 
 export default {

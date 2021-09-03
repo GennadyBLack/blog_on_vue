@@ -4,14 +4,17 @@
             :initialValues='initialValues'
             :errors='validationErrors'
             :isSubmitting='isSubmitting'
-            :author='author'
+            :author='auth'
+            :tags='tags'
             @articleSubmit="onSubmit"/>
     </div>
 
 </template>
 <script>
-import {mapState} from 'vuex'
+import {mapState,mapGetters} from 'vuex'
+import {getterTypes} from '@/store/modules/auth'
 import {actionTypes} from '@/store/modules/createArticle'
+import {actionTypes as tagActionTypes} from '@/store/modules/tag'
 import McvArticleForm from '@/components/ArticleForm'
 export default {
     name:'McvCreateArticle',
@@ -21,15 +24,17 @@ export default {
                 title:'',
                 description:'',
                 body:'',
-                tagList:[]
+                tagList:[],
+                author:{}
             }
         }
     },
     methods:{
         onSubmit(articleInput){
+            console.log(articleInput)
             this.$store.dispatch(actionTypes.createArticle,{articleInput})
             .then(article=> {
-                this.$route.push({name:'article',params:{slug:article._id}})
+                this.$router.push({name:'article',params:{slug:article._id}})
             })
         }
     },
@@ -40,8 +45,14 @@ export default {
         ...mapState({
             isSubmitting: state =>state.createArticle.isSubmitting,
             validationErrors: state => state.createArticle.validationErrors,
-            author:state => state.auth.currentUser
-        })
-    }
+            auth: state => state.auth.currentUser,
+            tags:state=> state.tag.data
+        }),
+        mounted(){
+            this.$store.dispatch(tagActionTypes.getTag)
+        }
+
+    },
+
 }
 </script>

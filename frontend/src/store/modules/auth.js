@@ -1,5 +1,6 @@
 import authApi from '@/api/auth'
 import {setItem,getItems} from '@/helpers/persistanceStorage'
+
 const state = {
   isSubmitting: false,
   currentUser:null,
@@ -163,7 +164,7 @@ const getters = {
 },
 [getterTypes.isAnonymous](state){
   return state.isLoggedIn === false
-},
+}
 }
 export default {
   state,

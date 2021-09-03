@@ -18,25 +18,22 @@
                 <input
                   type="text"
                   class="form-control form-control-lg"
-                  placeholder="Description"
-                  v-model="description"
+                  placeholder="Slug"
+                  v-model="slug"
                 />
               </fieldset>
-              <!-- <fieldset class="form-group">
+              <fieldset class="form-group">
                 <textarea
                   class="form-control form-control-lg"
                   placeholder="What is this article about?"
-                  v-model="body"
+                  v-model="description"
                 ></textarea>
-              </fieldset> -->
-              <fieldset class="form-group">
-                <input
-                  type="text"
-                  class="form-control form-control-lg"
-                  placeholder="Enter category"
-                  v-model="category"
-                />
               </fieldset>
+              <fieldset class="form-group">
+                <select  v-model='category' multiple='multiple'>
+                  <option class='form-control form-control-lg' v-for='tag in this.tags' :key='tag' :value="tag._id">{{tag.name}}</option>
+                </select>
+              </fieldset> 
               <fieldset class="form-group">
                 <button
                   type="submit"
@@ -53,6 +50,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import McvValidationErrors from '@/components/ValidationErrors'
 export default {
@@ -76,24 +74,32 @@ export default {
         author:{
             type:Object,
             required:true
+        },
+         tags:{
+            type:Array,
+            required:false
         }
     },
-    data:{
+    data(){
+      return{
         title:'',
-        desription:'',
-        category:[]
+        description:'',
+        category:[],
+        slug:''
+        }
     },
-    methodts:{
+    methods:{
         onSubmit(){
             const form = {
                title:this.title,
                description:this.description,
-               author:currentUser._id,
+               author:this.author._id,
                category:this.category,
+               slug:this.slug
             }
-            this.$emit('articleSubmit',form)
+           this.$emit('articleSubmit',form)
         }
-    },
+    }
 
 }
 </script>

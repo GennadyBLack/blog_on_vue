@@ -12,7 +12,6 @@ const Profile = require('../models/profile')
 router.get('/:id', async (req,res)=>{
     console.log('ID',req.params)
 const  searchProfile = await Profile.findById({_id:req.params.id})
-console.log(searchProfile,'Profile')
 if(searchProfile){res.json(searchProfile).status(200)}
 
 })
