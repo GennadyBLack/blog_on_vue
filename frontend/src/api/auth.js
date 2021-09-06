@@ -9,8 +9,13 @@ const login = credentials =>{
  const getCurrentUser = () =>{
      return axios.get('auth/jwt-test')
  }
+
+ const updateCurrentUser = (id,currentUserInput)=>{
+     axios.put('/user',currentUserInput).then(response=>response.data)
+ }
 export default {
     register,
     login,
-    getCurrentUser
+    getCurrentUser,
+    updateCurrentUser
 }

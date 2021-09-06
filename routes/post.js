@@ -78,8 +78,9 @@ router.post('/',(req,res)=>{
     }).catch(error=>res.json(error).status(500))
     })
     
-    router.post('/:id',async (req,res)=>{
-       await Post.findByIdAndUpdate(req.body.id,req.body)
+    router.put('/update/:id',async (req,res)=>{
+      console.log("EEEE")
+       await Post.findByIdAndUpdate(req.body.id,req.body).save()
         })
         
                 //view all Post in category
@@ -120,6 +121,10 @@ router.post('/',(req,res)=>{
       res.json('not found').status(400)
     }
   })
+
+  // router.put('/update/:id',async(req,res)=>{
+  //   Post.findByIdAndUpdate(req.params.id,)
+  // })
   
 module.exports = router
 

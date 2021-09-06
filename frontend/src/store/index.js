@@ -5,6 +5,7 @@ import tag from '@/store/modules/tag'
 import article from '@/store/modules/article'
 import createArticle from '@/store/modules/createArticle'
 import editArticle from '@/store/modules/editArticle'
+import settings from '@/store/modules/settings'
 
 
 export default createStore({
@@ -20,6 +21,7 @@ export default createStore({
     tag,
     article,
     createArticle,
-    editArticle
+    editArticle,
+    settings
   }
 })

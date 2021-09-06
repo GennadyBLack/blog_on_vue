@@ -1,7 +1,7 @@
 import axios from '@/api/axios'
 
 const getArticle = ( id) => {
-    return axios.get(`/articles/${id}`)
+    return axios.get(`/articles/${id}`).then(response=> response.data)
 }
 
 const deleteArticle = id => {

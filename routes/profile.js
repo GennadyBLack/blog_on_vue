@@ -10,10 +10,8 @@ const Profile = require('../models/profile')
 // })
 
 router.get('/:id', async (req,res)=>{
-    console.log('ID',req.params)
-const  searchProfile = await Profile.findById({_id:req.params.id})
-if(searchProfile){res.json(searchProfile).status(200)}
-
+const  searchProfile = await Profile.findOne({user:req.params.id})
+if(searchProfile){res.json(searchProfile).status(200)} else { res.json({'message':'not created yet'}).status(200)}
 })
 
 router.post('/',(req,res)=>{

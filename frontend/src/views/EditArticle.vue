@@ -1,5 +1,9 @@
 <template>
     <div>
+        <div>
+            <mcv-is-loading v-if='isLoading'/>
+            <mcv-validation-errors v-if='validationErrors'/>
+        </div>
             <mcv-article-form 
             v-if='initialValues'
             :initialValues='initialValues'
@@ -12,23 +16,28 @@
 
 </template>
 <script>
-import {mapState,mapGetters} from 'vuex'
-import {actionTypes} from '@/store/modules/getArticle'
+import {mapState} from 'vuex'
+import {actionTypes} from '@/store/modules/editArticle'
 import {actionTypes as tagActionTypes} from '@/store/modules/tag'
+import McvValidationErrors from '@/components/ValidationErrors'
+import McvIsLoading from '@/components/Loading'
 import McvArticleForm from '@/components/ArticleForm'
+
 export default {
     name:'McvEditArticle',
     methods:{
         onSubmit(articleInput){
-            const slug = this.$router.params.slug
-            this.$store.dispatch(actionTypes.editArticle,{slug,articleInput})
+            const slug = this.$route.params.slug
+            this.$store.dispatch(actionTypes.updateArticle,{slug,articleInput})
             .then(article=> {
                 this.$router.push({name:'article',params:{slug:article._id}})
             })
         }
     },
     components:{
-        McvArticleForm
+        McvArticleForm,
+        McvValidationErrors,
+        McvIsLoading
     },
     computed:{
         ...mapState({
@@ -40,23 +49,22 @@ export default {
             tags:state=> state.tag.data
         }),
      initialValues(){
-                if(!articles){
+                if(!this.article){
                     return null
                 }
-                 return {
+                return {
                 title:this.article.title,
                 description:this.article.description,
                 slug:this.article.slug,
-                tagList:this.article.tagList,
+                category:this.article.category,
                 author:{}
             }
             } 
-           
-
     },
          mounted(){
+            this.$store.dispatch(actionTypes.getArticle,this.$route.params.slug)
             this.$store.dispatch(tagActionTypes.getTag)
-            this.$store.dispatch(actionTypes.getArticle)
+           
         }
 }
 </script>

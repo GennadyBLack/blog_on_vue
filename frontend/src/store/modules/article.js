@@ -63,7 +63,7 @@ const actions = {
       articleApi
         .getArticle(id )
         .then(response => {
-          context.commit(mutationTypes.getArticleSuccess, response.data)
+          context.commit(mutationTypes.getArticleSuccess, response)
           resolve(response.data)
         })
         .catch(() => {

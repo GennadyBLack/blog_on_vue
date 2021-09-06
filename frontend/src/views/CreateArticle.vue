@@ -11,8 +11,7 @@
 
 </template>
 <script>
-import {mapState,mapGetters} from 'vuex'
-import {getterTypes} from '@/store/modules/auth'
+import {mapState} from 'vuex'
 import {actionTypes} from '@/store/modules/createArticle'
 import {actionTypes as tagActionTypes} from '@/store/modules/tag'
 import McvArticleForm from '@/components/ArticleForm'
@@ -24,8 +23,9 @@ export default {
                 title:'',
                 description:'',
                 body:'',
-                tagList:[],
-                author:{}
+                category:[],
+                author:{},
+
             }
         }
     },

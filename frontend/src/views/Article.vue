@@ -24,7 +24,7 @@
           <span v-if='isAuthor'>
             <router-link
               class="btn btn-outline-secondary btn-sm"
-              :to="{name: 'editArticle', params: {slug: article.slug}}"
+              :to="{name: 'editArticle', params: {slug: article._id} }" exact
             >
               <i class="ion-edit" />
               Edit Article
@@ -86,7 +86,7 @@ export default {
     methods:{
         deleteArticle(){
             this.store.dispatch(articleActionTypes.deleteArticle,{id:this.$store.params.id})
-            .then.$route.push({name:'blobalFeed'})
+            .then(()=>{this.$route.push({name:'globalFeed'})})
         }
     }
   },
